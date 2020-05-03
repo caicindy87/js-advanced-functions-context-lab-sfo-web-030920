@@ -16,6 +16,12 @@ function createEmployeeRecords(arrayOfArrays) {
   return arrayOfArrays.map(createEmployeeRecord);
 }
 
+// function createEmployeeRecords(employeeRowData) {
+//     return employeeRowData.map(function(row){
+//         return createEmployeeRecord(row)
+//     })
+// }
+
 function createTimeInEvent(dateStamp) {
   const [date, hour] = dateStamp.split(" ");
 
@@ -39,14 +45,10 @@ function createTimeOutEvent(dateStamp) {
 }
 
 function hoursWorkedOnDate(date) {
-  const timeInEventOnDate = this.timeInEvents.find(
-    (event) => event.date === date
-  );
-  const timeOutEventOnDate = this.timeOutEvents.find(
-    (event) => event.date === date
-  );
+  const inEvent = this.timeInEvents.find((event) => event.date === date);
+  const outEvent = this.timeOutEvents.find((event) => event.date === date);
 
-  return (timeOutEventOnDate.hour - timeInEventOnDate.hour) / 100;
+  return (outEvent.hour - inEvent.hour) / 100;
 }
 
 function wagesEarnedOnDate(date) {
